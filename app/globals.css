@@ -25,12 +25,3 @@ body {
     text-wrap: balance;
   }
 }
-
-.pokemonSearch {
-  text-align: center
-}
-
-img {
-  margin: auto;
-  width: 200px;
-}

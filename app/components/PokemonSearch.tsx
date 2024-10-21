@@ -34,7 +34,7 @@ export default function PokemonSearch() {
     }
 
     return (
-        <div className="pokemonSearch">
+        <div className="text-2xl content-center	">
             <form onSubmit={handleSubmit}>
                 <label>
                     <input
@@ -48,7 +48,7 @@ export default function PokemonSearch() {
             </form>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {pokemonData && (
-                <div>
+                <div className="text-2xl">
                     <img src={pokemonData.sprites.front_default} alt={pokemonData.name} />
                     <h1>
                         {pokemonData.types.map((t: PokemonType) => {
