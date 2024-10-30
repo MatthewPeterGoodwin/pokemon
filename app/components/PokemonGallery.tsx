@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 interface Pokemon {
   name: string;
@@ -26,26 +26,34 @@ export default function PokemonGallery() {
   const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchPokemonData = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        // Fetch initial pagination data
-        const paginationResponse = await fetch('https://pokeapi.co/api/v2/pokemon/');
+        const offset = (currentPage - 1) * itemsPerPage;
+        const paginationResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`);
+        
         if (!paginationResponse.ok) {
           throw new Error(`HTTP error: Status ${paginationResponse.status}`);
         }
-        
+
         const paginationData: PaginationResponse = await paginationResponse.json();
-        
-        // Fetch individual Pokemon data in parallel
-        const pokemonPromises = paginationData.results.map(pokemon => 
-          fetch(pokemon.url).then(res => {
+        setTotalPages(Math.ceil(paginationData.count / itemsPerPage));
+
+        const pokemonPromises = paginationData.results.map((pokemon) =>
+          fetch(pokemon.url).then((res) => {
             if (!res.ok) throw new Error(`Failed to fetch ${pokemon.name}`);
             return res.json();
           })
         );
-        
+
         const pokemonList = await Promise.all(pokemonPromises);
         setPokemonData(pokemonList);
         
@@ -57,7 +65,15 @@ export default function PokemonGallery() {
     };
 
     fetchPokemonData();
-  }, []);
+  }, [currentPage]);
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
 
   if (loading) {
     return (
@@ -103,6 +119,26 @@ export default function PokemonGallery() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className="px-4 py-2 mx-1 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span className="px-4 py-2 text-sm font-medium">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 mx-1 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 disabled:opacity-50"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

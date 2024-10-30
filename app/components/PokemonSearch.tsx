@@ -5,22 +5,22 @@ import { useState } from 'react'
 interface Pokemon {
   name: string;
   sprites: {
-    front_default: string;
-    back_default: string;
+    front_default: string
+    back_default: string
   };
   types: Array<{
     type: {
-      name: string;
+      name: string
     };
   }>;
   stats: Array<{
-    base_stat: number;
+    base_stat: number
     stat: {
-      name: string;
+      name: string
     };
   }>;
-  height: number;
-  weight: number;
+  height: number
+  weight: number
 }
 
 export default function PokemonSearch() {
@@ -31,7 +31,6 @@ export default function PokemonSearch() {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPokemonName(event.target.value)
-    // Clear previous results when input changes
     if (pokemonData) setPokemonData(null)
     if (error) setError(null)
   }
