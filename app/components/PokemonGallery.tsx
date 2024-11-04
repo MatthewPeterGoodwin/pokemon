@@ -6,6 +6,7 @@ interface Pokemon {
   name: string;
   sprites: {
     front_default: string;
+    front_shiny: string;
   };
   types: Array<{
     type: {
@@ -28,6 +29,7 @@ export default function PokemonGallery() {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
 
   const itemsPerPage = 12;
 
@@ -75,6 +77,15 @@ export default function PokemonGallery() {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
+  const handlePokemonClick = (pokemon: Pokemon) => {
+    // Toggle selection; if the same Pokémon is clicked, deselect it
+    if (selectedPokemon?.name === pokemon.name) {
+      setSelectedPokemon(null);
+    } else {
+      setSelectedPokemon(pokemon);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -97,11 +108,12 @@ export default function PokemonGallery() {
         {pokemonData.map((pokemon) => (
           <div 
             key={pokemon.name}
-            className="p-4 border rounded-lg shadow hover:shadow-lg transition-shadow"
+            className="p-4 border rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => handlePokemonClick(pokemon)}
           >
             <img
               className="h-40 w-full max-w-full rounded-lg object-contain"
-              src={pokemon.sprites.front_default}
+              src={selectedPokemon?.name === pokemon.name ? pokemon.sprites.front_shiny : pokemon.sprites.front_default} // Show shiny if selected
               alt={`${pokemon.name} sprite`}
             />
             <h2 className="mt-2 text-center capitalize font-medium">
