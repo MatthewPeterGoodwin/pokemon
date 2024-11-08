@@ -3,6 +3,11 @@
 exports[`Pokemon Home Page should match snapshot 1`] = `
 <div>
   <div
+    data-testid="pokemon-header"
+  >
+    PokemonHeader Component
+  </div>
+  <div
     data-testid="pokemon-search"
   >
     PokemonSearch Component
