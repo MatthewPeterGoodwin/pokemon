@@ -1,6 +1,6 @@
 Pokemon
 
 TODO: 
-- Navigation
+- JEST
 - UseContext
 - Cacheable fetch of data
