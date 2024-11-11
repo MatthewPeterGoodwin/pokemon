@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Page from './page';
 
-// Mock the components with the correct path relative to app directory
 jest.mock('./components/PokemonSearch', () => {
   return function MockPokemonSearch() {
     return <div data-testid="pokemon-search">PokemonSearch Component</div>;

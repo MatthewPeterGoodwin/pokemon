@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 
+// Types
 interface Pokemon {
   name: string;
   sprites: {
@@ -24,17 +25,20 @@ interface Pokemon {
 }
 
 export default function PokemonSearch() {
+  // State variables
   const [pokemonName, setPokemonName] = useState('')
   const [pokemonData, setPokemonData] = useState<Pokemon | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
 
+  // Handle search input change, set state variable accordingly
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPokemonName(event.target.value)
     if (pokemonData) setPokemonData(null)
     if (error) setError(null)
   }
 
+  // Handle submit, fetches pokemon data from api
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setError(null)
@@ -64,8 +68,8 @@ export default function PokemonSearch() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-3xl font-bold mb-8">Pokemon Search</h1>
-      
+       <h1 className="text-3xl font-bold mb-8">Pokemon Search</h1>
+
       <form onSubmit={handleSubmit} className="w-full max-w-md mb-8">
         <div className="flex gap-2">
           <input

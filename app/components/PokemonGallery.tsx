@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
+// Types
 interface Pokemon {
   name: string;
   sprites: {
@@ -24,6 +25,7 @@ interface PaginationResponse {
 }
 
 export default function PokemonGallery() {
+  // State variables
   const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,8 +33,10 @@ export default function PokemonGallery() {
   const [totalPages, setTotalPages] = useState(0);
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
 
+  // Items per page for pagination
   const itemsPerPage = 12;
 
+  // Fetches pokemon data for pagination, with calculated offset, based on the currentPage state variable
   useEffect(() => {
     const fetchPokemonData = async () => {
       setLoading(true);
@@ -69,16 +73,18 @@ export default function PokemonGallery() {
     fetchPokemonData();
   }, [currentPage]);
 
+  // Handles page change previous
   const handlePreviousPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
+  // Handles page change next
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
-
+  
+  // Handles click of pokemon to turn to shiny, if the same Pokémon is clicked - deselect it
   const handlePokemonClick = (pokemon: Pokemon) => {
-    // Toggle selection; if the same Pokémon is clicked, deselect it
     if (selectedPokemon?.name === pokemon.name) {
       setSelectedPokemon(null);
     } else {
