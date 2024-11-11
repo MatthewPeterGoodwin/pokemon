@@ -1,6 +1,6 @@
 Pokemon
 
 TODO: 
+- Navigation
+- UseContext
 - Cacheable fetch of data
-- Clickable gallery
-- Multiple pages & navigation
