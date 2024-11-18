@@ -1,5 +1,6 @@
 import PokemonHeader from "./components/PokemonHeader";
 import PokemonCard from "./components/PokemonCard";
+import PokemonFooter from "./components/PokemonFooter";
 import { StrictMode } from "react";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <PokemonHeader />
       <PokemonCard name = {"squirtle"}/>
       <PokemonCard name = {"blastoise"}/>
+      <PokemonFooter />
       </StrictMode>
     </>
   )
