@@ -13,6 +13,9 @@ export default function PokemonHeader() {
                 <Link href="/search" className="text-white hover:text-yellow-300 transition-colors duration-200">
                     Search
                 </Link>
+                <Link href="/random" className="text-white hover:text-yellow-300 transition-colors duration-200">
+                    Random
+                </Link>
                 <Link href="/gallery" className="text-white hover:text-yellow-300 transition-colors duration-200">
                     Gallery
                 </Link>
