@@ -45,7 +45,7 @@ export default function PokemonGallery() {
       try {
         const offset = (currentPage - 1) * itemsPerPage;
         const paginationResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${itemsPerPage}`);
-        
+
         if (!paginationResponse.ok) {
           throw new Error(`HTTP error: Status ${paginationResponse.status}`);
         }
@@ -62,7 +62,7 @@ export default function PokemonGallery() {
 
         const pokemonList = await Promise.all(pokemonPromises);
         setPokemonData(pokemonList);
-        
+
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An unknown error occurred');
       } finally {
@@ -82,7 +82,7 @@ export default function PokemonGallery() {
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
-  
+
   // Handles click of pokemon to turn to shiny, if the same Pokémon is clicked - deselect it
   const handlePokemonClick = (pokemon: Pokemon) => {
     if (selectedPokemon?.name === pokemon.name) {
@@ -112,7 +112,7 @@ export default function PokemonGallery() {
     <div className="p-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {pokemonData.map((pokemon) => (
-          <div 
+          <div
             key={pokemon.name}
             className="p-4 border rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer"
             onClick={() => handlePokemonClick(pokemon)}
@@ -127,7 +127,7 @@ export default function PokemonGallery() {
             </h2>
             <div className="mt-2 flex gap-2 justify-center">
               {pokemon.types.map(({ type }) => (
-                <span 
+                <span
                   key={type.name}
                   className="px-2 py-1 bg-gray-100 rounded-full text-sm capitalize"
                 >

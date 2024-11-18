@@ -8,19 +8,19 @@ interface Props {
 interface Pokemon {
     name: string;
     sprites: {
-      front_default: string;
-      back_default: string;
+        front_default: string;
+        back_default: string;
     };
     types: Array<{
-      type: {
-        name: string;
-      };
+        type: {
+            name: string;
+        };
     }>;
     stats: Array<{
-      base_stat: number;
-      stat: {
-        name: string;
-      };
+        base_stat: number;
+        stat: {
+            name: string;
+        };
     }>;
     height: number;
     weight: number;
@@ -32,7 +32,7 @@ export default function PokemonCards({ name }: Props) {
     const [error, setError] = useState<string | null>(null);
 
     // Fetches pokemon data using props.name
-    useEffect(() => {        
+    useEffect(() => {
         const fetchPokemonData = async () => {
             try {
                 const response = await fetch(
@@ -70,10 +70,10 @@ export default function PokemonCards({ name }: Props) {
                 <div className="w-full max-w-md border rounded-lg shadow-lg p-6 bg-white">
                     <div className="flex flex-col items-center">
                         <h2 className="text-2xl font-bold mb-2 capitalize">{pokemonData.name}</h2>
-                        
+
                         <div className="relative w-48 h-48">
-                            <img 
-                                src={pokemonData.sprites.front_default} 
+                            <img
+                                src={pokemonData.sprites.front_default}
                                 alt={pokemonData.name}
                                 className="absolute top-0 left-0 w-full h-full object-contain"
                             />
@@ -113,7 +113,7 @@ export default function PokemonCards({ name }: Props) {
                                             <span className="text-sm font-medium">{base_stat}</span>
                                         </div>
                                         <div className="w-full bg-gray-200 rounded-full h-2">
-                                            <div 
+                                            <div
                                                 className="bg-blue-500 h-2 rounded-full"
                                                 style={{ width: `${(base_stat / 255) * 100}%` }}
                                             />

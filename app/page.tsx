@@ -6,11 +6,11 @@ import { StrictMode } from "react";
 export default function Home() {
   return (
     <>
-    <StrictMode>
-      <PokemonHeader />
-      <PokemonCard name = {"squirtle"}/>
-      <PokemonCard name = {"blastoise"}/>
-      <PokemonFooter />
+      <StrictMode>
+        <PokemonHeader />
+        <PokemonCard name={"squirtle"} />
+        <PokemonCard name={"blastoise"} />
+        <PokemonFooter />
       </StrictMode>
     </>
   )
