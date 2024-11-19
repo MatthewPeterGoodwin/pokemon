@@ -8,8 +8,9 @@ export default function Home() {
     <>
       <StrictMode>
         <PokemonHeader />
-        <PokemonCard name={"squirtle"} />
-        <PokemonCard name={"blastoise"} />
+        <PokemonCard name={"charmander"} /> 
+        <PokemonCard name={"charmeleon"} />
+        <PokemonCard name={"charizard"} />
         <PokemonFooter />
       </StrictMode>
     </>
