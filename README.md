@@ -13,6 +13,7 @@ A React application for searching and exploring Pokémon data using the [PokéAP
 
 ### To-Do
 
+- **Clean comments**: Use same comment style as PokemonCard.
 - **Testing**: Implement unit and integration testing using Jest.
 - **Context Management**: Utilize React's `useContext` to manage global state (e.g., theme toggling).
 - **Data Caching**: Implement cacheable fetch functionality for improved performance.
