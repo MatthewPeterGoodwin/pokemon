@@ -12,13 +12,12 @@ A React application for searching and exploring Pokémon data using the [PokéAP
 ## Roadmap
 
 ### To-Do
-
-- **Clean comments**: Use same comment style as PokemonCard.
-- **Testing**: Implement unit and integration testing using Jest.
-- **Context Management**: Utilize React's `useContext` to manage global state (e.g., theme toggling).
-- **Data Caching**: Implement cacheable fetch functionality for improved performance.
 - **Shiny Mode**: Allow shiny toggle as a prop on all components.
 - **Gallery Enhancements**:
   - Add advanced filtering options.
   - Improve sorting functionality.
   - Enhance search capabilities for multi-page galleries.
+- **Testing**: Implement unit and integration testing using Jest.
+- **Context Management**: Utilize React's `useContext` to manage global state (e.g., theme toggling).
+- **Data Caching**: Implement cacheable fetch functionality for improved performance.
+
